@@ -4,7 +4,7 @@ import styles from "./Popup.module.css";
 
 const Popup = () => {
   return (
-    <div class={styles.App}>
+    <div class={styles.Popup}>
       <header class={styles.header}>
         <img src={logo} class={styles.logo} alt="logo" />
         <p class="font-bold">
