@@ -14,6 +14,7 @@ const publicDir = resolve(__dirname, "public");
 const isDev = process.env.__DEV__ === "true";
 
 export default defineConfig({
+  clearScreen: false,
   plugins: [solidPlugin(), crx({ manifest }), WindiCSS()],
   resolve: {
     alias: {
