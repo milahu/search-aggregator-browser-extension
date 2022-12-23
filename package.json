@@ -21,7 +21,7 @@
         "solid-js": "^1.6.6"
     },
     "devDependencies": {
-        "@crxjs/vite-plugin": "1.0.14",
+        "@crxjs/vite-plugin": "2.0.0-beta.1",
         "@types/chrome": "0.0.206",
         "@types/jest": "^29.2.4",
         "@types/node": "18.11.17",

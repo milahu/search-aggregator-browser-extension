@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@crxjs/vite-plugin': 1.0.14
+  '@crxjs/vite-plugin': 2.0.0-beta.1
   '@types/chrome': 0.0.206
   '@types/jest': ^29.2.4
   '@types/node': 18.11.17
@@ -36,7 +36,7 @@ dependencies:
   solid-js: 1.6.6
 
 devDependencies:
-  '@crxjs/vite-plugin': 1.0.14_vite@4.0.3
+  '@crxjs/vite-plugin': 2.0.0-beta.1_vite@4.0.3
   '@types/chrome': 0.0.206
   '@types/jest': 29.2.4
   '@types/node': 18.11.17
@@ -546,11 +546,11 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@crxjs/vite-plugin/1.0.14_vite@4.0.3:
-    resolution: {integrity: sha512-emOueVCqFRFmpcfT80Xsm4mfuFw9VSp5GY4eh5qeLDeiP81g0hddlobVQCo0pE2ZvNnWbyhLrXEYAaMAXjNL6A==}
+  /@crxjs/vite-plugin/2.0.0-beta.1_vite@4.0.3:
+    resolution: {integrity: sha512-KhoQJZ6M6uLWORbW47ZCregMiSHWhq/IUXN/JtynmevckKgeNoPTMPLmsm8+8inWMUg3m2Ez8QZ+KwSrY2ouhw==}
     engines: {node: '>=14'}
     peerDependencies:
-      vite: ^2.9.0
+      vite: ^2.9.0 <= ^3.1.7
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@webcomponents/custom-elements': 1.5.1
@@ -561,11 +561,12 @@ packages:
       es-module-lexer: 0.10.5
       fast-glob: 3.2.12
       fs-extra: 10.1.0
+      get-port: 6.1.2
       jsesc: 3.0.2
       magic-string: 0.26.7
       picocolors: 1.0.0
       react-refresh: 0.13.0
-      rollup: 2.79.1
+      rollup: 2.78.1
       vite: 4.0.3_gneikmxcpj2uc2xuqjosnroj4e
     optionalDependencies:
       '@vitejs/plugin-react': 3.0.0_vite@4.0.3
@@ -2849,6 +2850,11 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: true
 
+  /get-port/6.1.2:
+    resolution: {integrity: sha512-BrGGraKm2uPqurfGVj/z97/zv8dPleC6x9JBNRTrDNtCkkRF4rPwrQXFgL7+I+q8QSdU4ntLQX2D7KIxSy8nGw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dev: true
+
   /get-stream/6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
@@ -4514,8 +4520,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rollup/2.79.1:
-    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
+  /rollup/2.78.1:
+    resolution: {integrity: sha512-VeeCgtGi4P+o9hIg+xz4qQpRl6R401LWEXBmxYKOV4zlF82lyhgh2hTZnheFUbANE8l2A41F458iwj2vEYaXJg==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
