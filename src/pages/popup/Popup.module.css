@@ -1,5 +1,10 @@
 .Popup {
     text-align: center;
+
+    /* TODO automatic */
+    background: black;
+    color: white;
+    height: 100%;
 }
 
 .logo {
