@@ -9,7 +9,7 @@
         "url": "https://github.com/fuyutarow/solid-chrome-extension-template.git"
     },
     "scripts": {
-        "dev": "vite build -w",
+        "dev": "__DEV__=true vite build -w",
         "build": "vite build",
         "lint": "eslint . --fix -c .eslintrc --ext js,ts --ignore-pattern='!.*'",
         "dev:nodemon": "nodemon",
