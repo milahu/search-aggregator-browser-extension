@@ -1,12 +1,11 @@
 {
-    "name": "solid-chrome-extension-template",
-    "displayName": "Solid Chrome Extension Template",
-    "version": "0.202212.1",
-    "description": "Chrome Extension boilerplate with SolidJS + Vite + ManifestV3",
+    "name": "search-aggregator-web-extension",
+    "version": "0.0.1",
+    "description": "browser extension to search with many search engines in parallel",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/fuyutarow/solid-chrome-extension-template.git"
+        "url": "https://github.com/milahu/search-aggregator-web-extension"
     },
     "scripts": {
         "dev": "__DEV__=true vite build -w",
