@@ -4,12 +4,22 @@ import styles from "./Options.module.css";
 import {createSignal, onMount, For} from "solid-js"
 import formatErrorContext from "./format-error-context.js"
 
+import {
+  HopeProvider,
+  Tabs,
+  TabList,
+  Tab,
+  TabPanel,
+} from "@hope-ui/solid"
+
 // javascript interpreter
 // workaround for CSP (content security policy)
 // we cannot use "eval" or "new Function" to run user code
 // TODO but maybe we can inject <script> or <iframe>
 // https://github.com/milahu/awesome-javascript-interpreters
 import Sval from 'sval'
+
+
 
 import {documentOfResponse} from "./lib"
 
@@ -77,14 +87,7 @@ const Options = () => {
     }))
   }
 
-  return (
-    <div>
-      <div class={styles.App}>
-        <form class={styles.form} onSubmit={startSearch}>
-          <input ref={searchInput}/>
-          <button ref={searchButton}>Search</button>
-        </form>
-        <div>
+  /*
           <For each={getResults()}>
             {(resultsObject) => (
               <div>
@@ -93,9 +96,35 @@ const Options = () => {
               </div>
             )}
           </For>
+  */
+
+  return (
+    <HopeProvider>
+      <div>
+        <div class={styles.App}>
+          <form class={styles.form} onSubmit={startSearch}>
+            <input ref={searchInput}/>
+            <button ref={searchButton}>Search</button>
+          </form>
+          <div>
+            <Tabs>
+              <TabList>
+                <For each={getResults()}>{(resultsObject) => (
+                  <Tab>{resultsObject.name}</Tab>
+                )}</For>
+                <Tab>todo1</Tab>
+                <Tab>todo2</Tab>
+              </TabList>
+              <For each={getResults()}>{(resultsObject) => (
+                <TabPanel><RawHtml html={resultsObject.results}/></TabPanel>
+              )}</For>
+              <TabPanel>todo1</TabPanel>
+              <TabPanel>todo2</TabPanel>
+            </Tabs>
+          </div>
         </div>
       </div>
-    </div>
+    </HopeProvider>
   );
 };
 
