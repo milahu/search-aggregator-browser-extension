@@ -8,6 +8,13 @@ browser extension to search with many search engines in parallel
 - https://github.com/duolingo/metasearch - Search aggregator for Slack, Google Docs, GitHub, and more. written in JavaScript (TypeScript)
 - boardreader.com - search many forums. closed source
 
+## based on
+
+package.json, vite.config.ts, ...
+
+- https://github.com/antfu/vitesse-webext
+- https://github.com/xiaoluoboding/chrome-ext-mv3-starter
+
 ## see also
 
 - https://github.com/ayakashi-io/ayakashi - web scraping framework, domQL, scrape Single Page Apps, based on jsdom, for node.js
