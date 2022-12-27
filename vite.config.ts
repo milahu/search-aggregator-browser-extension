@@ -1,5 +1,6 @@
 import { crx } from "@crxjs/vite-plugin";
 import { resolve } from "path";
+import fs from "fs";
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 import WindiCSS from "vite-plugin-windicss";
@@ -13,8 +14,18 @@ const publicDir = resolve(__dirname, "public");
 
 const isDev = process.env.__DEV__ === "true";
 //console.log("vite.config.ts: isDev", isDev)
+const isProd = !isDev;
 
 // TODO port
+
+const outputAssetsDir = '';
+const outputDefaults = {
+  // remove hashes from filenames
+  entryFileNames: `${outputAssetsDir}[name].js`,
+  chunkFileNames: `${outputAssetsDir}[name].js`,
+  // TODO move icons to icons/
+  assetFileNames: `${outputAssetsDir}[name].[ext]`,
+}
 
 export default defineConfig(({ command }) => ({
   //base: command === 'serve' ? `http://localhost:${port}/` : '/dist/',
@@ -25,7 +36,11 @@ export default defineConfig(({ command }) => ({
     },
   },
   clearScreen: false,
-  plugins: [solidPlugin(), crx({ manifest }), WindiCSS()],
+  plugins: [
+    solidPlugin(),
+    crx({ manifest }),
+    WindiCSS(),
+  ],
   resolve: {
     alias: {
       "@src": root,
@@ -36,35 +51,32 @@ export default defineConfig(({ command }) => ({
   publicDir,
   build: {
     outDir,
-    emptyOutDir: false,
-    //sourcemap: isDev,
+    //emptyOutDir: false, // keep old files. this is no caching
+    // true -> 15 seconds
+    // false -> 15 seconds
     sourcemap: isDev ? 'inline' : false,
-    minify: !isDev,
+    // default -> 20 seconds
+    // false -> 15 seconds
+    minify: isProd,
     rollupOptions: {
-      input: {
-      //   devtools: resolve(pagesDir, "devtools", "index.html"),
-      //   panel: resolve(pagesDir, "panel", "index.html"),
-      //   content: resolve(pagesDir, "content", "index.ts"),
-      //   background: resolve(pagesDir, "background", "index.ts"),
-      //   contentStyle: resolve(pagesDir, "content", "style.scss"),
-        popup: resolve(pagesDir, "popup", "index.html"),
-      //   newtab: resolve(pagesDir, "newtab", "index.html"),
-        options: resolve(pagesDir, "options", "index.html"),
-      },
-      /*
+      // true -> 20 seconds
+      // false -> 15 seconds
+      treeshake: isProd,
+      // needed for output.preserveModules
+      preserveEntrySignatures: isDev ? "strict" : false,
       output: {
-        entryFileNames: "src/pages/[name]/index.js",
-        chunkFileNames: isDev
-          ? "assets/js/[name].js"
-          : "assets/js/[name].[hash].js",
-        assetFileNames: (assetInfo) => {
-          const { dir, name: _name } = path.parse(assetInfo.name);
-          // const assetFolder = getLastElement(dir.split("/"));
-          // const name = assetFolder + firstUpperCase(_name);
-          return `assets/[ext]/${name}.chunk.[ext]`;
-        },
+        ...outputDefaults,
+        format: 'esm',
+        //dir: 'dist',
+        // false -> 30 seconds
+        // true -> 15 seconds
+        preserveModules: true,
+        preserveModulesRoot: __dirname,
+        //manualChunks,
       },
-      */
+      external: [
+        //"sval",
+      ],
     },
   },
   optimizeDeps: {
@@ -74,10 +86,12 @@ export default defineConfig(({ command }) => ({
       //'webextension-polyfill',
     ],
     exclude: [
-      //'@engine262/engine262',
-      //'sval',
+      /*
+      'solid-js',
       'sval',
       'acorn',
+      "@hope-ui/solid",
+      */
     ],
   },
 }));
