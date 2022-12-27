@@ -17,13 +17,13 @@ const manifest = defineManifest(async () => ({
   background: { service_worker: "src/pages/background/index.ts" },
   action: {
     default_popup: "src/pages/popup/index.html",
-    default_icon: "icons/34x34.png",
   },
   chrome_url_overrides: {
     //newtab: "src/pages/newtab/index.html",
   },
   icons: {
-    "128": "icons/128x128.png",
+    "32": "src/assets/img/search.32.png",
+    "128": "src/assets/img/search.128.png",
   },
   content_scripts: [
     {
