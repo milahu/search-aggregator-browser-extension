@@ -12,10 +12,6 @@ const assetsDir = resolve(root, "assets");
 const outDir = resolve(__dirname, "dist");
 const publicDir = resolve(__dirname, "public");
 
-const isDev = process.env.__DEV__ === "true";
-//console.log("vite.config.ts: isDev", isDev)
-const isProd = !isDev;
-
 // TODO port
 
 const outputAssetsDir = '';
@@ -27,7 +23,17 @@ const outputDefaults = {
   assetFileNames: `${outputAssetsDir}[name].[ext]`,
 }
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(({ command }) => {
+
+//console.log("vite.config.ts: command", command)
+const isDev = (
+  process.env.__DEV__ === "true" ||
+  command === "serve"
+);
+//console.log("vite.config.ts: isDev", isDev)
+const isProd = !isDev;
+
+return {
   //base: command === 'serve' ? `http://localhost:${port}/` : '/dist/',
   server: {
     //port,
@@ -70,7 +76,7 @@ export default defineConfig(({ command }) => ({
         //dir: 'dist',
         // false -> 30 seconds
         // true -> 15 seconds
-        preserveModules: true,
+        preserveModules: isDev,
         preserveModulesRoot: __dirname,
         //manualChunks,
       },
@@ -94,4 +100,6 @@ export default defineConfig(({ command }) => ({
       */
     ],
   },
-}));
+};
+
+});
