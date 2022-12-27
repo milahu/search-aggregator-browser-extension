@@ -1,0 +1,16 @@
+diff --git a/node_modules/rollup/dist/es/shared/rollup.js b/node_modules/rollup/dist/es/shared/rollup.js
+index b07071f..717ea2f 100644
+--- a/node_modules/rollup/dist/es/shared/rollup.js
++++ b/node_modules/rollup/dist/es/shared/rollup.js
+@@ -24495,7 +24495,10 @@ function sanitizeFileName(name) {
+     const driveLetter = match ? match[0] : '';
+     // A `:` is only allowed as part of a windows drive letter (ex: C:\foo)
+     // Otherwise, avoid them because they can refer to NTFS alternate data streams.
+-    return driveLetter + name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '_');
++    const name2 = driveLetter + name.slice(driveLetter.length).replace(INVALID_CHAR_REGEX, '_');
++    // underscore filename prefix is illegal in web extensions.
++    // chrome error: Filenames starting with "_" are reserved for use by the system.
++    return (name2[0] == "_") ? ("z" + name2) : name2
+ }
+ 
+ function isValidUrl(url) {

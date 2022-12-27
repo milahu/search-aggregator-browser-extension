@@ -45,6 +45,7 @@
         "nodemon": "2.0.20",
         "postcss": "^8.4.20",
         "prettier": "2.8.1",
+        "rollup": "3.8.1",
         "sass": "1.57.1",
         "solid-transition-group": "^0.0.12",
         "sval": "^0.4.8",
