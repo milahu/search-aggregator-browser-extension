@@ -4,7 +4,7 @@ import fs from "fs";
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 import WindiCSS from "vite-plugin-windicss";
-import manifest from "./src/manifest";
+import manifest from "./manifest";
 
 const root = resolve(__dirname, "src");
 const pagesDir = resolve(root, "pages");
