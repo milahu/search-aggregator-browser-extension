@@ -12,7 +12,6 @@
         "dev": "__DEV__=true vite build --watch --mode development",
         "build": "vite build",
         "lint": "eslint . --fix -c .eslintrc --ext js,ts --ignore-pattern='!.*'",
-        "dev:nodemon": "nodemon",
         "build:noemit": "tsc --noEmit && vite build",
         "test": "jest"
     },
@@ -42,7 +41,6 @@
         "fs-extra": "11.1.0",
         "jest": "^29.3.1",
         "jest-environment-jsdom": "^29.3.1",
-        "nodemon": "2.0.20",
         "postcss": "^8.4.20",
         "prettier": "2.8.1",
         "rollup": "3.8.1",
