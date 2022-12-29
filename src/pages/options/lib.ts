@@ -1,5 +1,7 @@
 export type DocumentWithSource = Document & {_source: string;}
 
+import formSerialize from "form-serialize"
+
 /**
 * parse html document from http response. \
 * also handle non-utf8 data.
@@ -19,7 +21,7 @@ export async function documentOfResponse(response: Response): Promise<DocumentWi
   if (charset && charset != "UTF-8") { // TODO check more? utf-8, utf8, UTF8, ...
     const decoder = new TextDecoder(charset)
     const buffer = await response.arrayBuffer()
-    html = decoder.decode(buffer) // convert to utf8
+    html = decoder.decode(buffer) // convert from charset to utf8
   }
   else {
     html = await response.text()
@@ -39,8 +41,6 @@ export async function documentOfResponse(response: Response): Promise<DocumentWi
   */
 }
 
-
-
 // https://stackoverflow.com/questions/57121467/import-a-module-from-string-variable
 // WONTFIX Refused to load the script ... because it violates the following Content Security Policy directive: "script-src 'self'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback.
 export function importFromString(str) {
@@ -54,4 +54,11 @@ export function importFromString(str) {
   //const url = "data:text/javascript;base64," + btoa(str)
   const url = "data:text/javascript," + str
   return import(url)
+}
+
+/**
+ * parse html form to object of values
+ */
+export function parseForm(form: HTMLFormElement): Record<string, any> {
+  return formSerialize(form, {hash: true})
 }
