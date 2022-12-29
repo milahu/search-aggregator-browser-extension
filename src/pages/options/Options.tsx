@@ -21,7 +21,8 @@ import {
 // fix: import esm module
 import Sval from '@src/sval/dist'
 
-import {documentOfResponse} from "./lib"
+// documentOfResponse, parseForm, ...
+import * as libraryFunctions from "./lib"
 
 import {searchBackendSources} from "./search-backends/index.js"
 
@@ -46,10 +47,10 @@ const Options = () => {
           sandBox: true,
         })
         interpreter.import({
+          ...libraryFunctions,
           searchQuery,
           resolve,
           reject,
-          documentOfResponse,
         })
         const fullSource = (
           source + "\n" +
