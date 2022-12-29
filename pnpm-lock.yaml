@@ -10,6 +10,7 @@ specifiers:
   '@types/node': 18.11.17
   '@typescript-eslint/eslint-plugin': 5.47.0
   '@typescript-eslint/parser': 5.47.0
+  acorn: ^8.8.1
   autoprefixer: ^10.4.13
   babel-preset-solid: ^1.6.6
   eslint: 8.30.0
@@ -51,6 +52,7 @@ devDependencies:
   '@types/node': 18.11.17
   '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
   '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
+  acorn: 8.8.1
   autoprefixer: 10.4.13_postcss@8.4.20
   babel-preset-solid: 1.6.6
   eslint: 8.30.0
