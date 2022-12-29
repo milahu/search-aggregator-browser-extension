@@ -22,6 +22,7 @@ specifiers:
   eslint-plugin-solid: ^0.9.1
   eslint-plugin-tailwindcss: ^3.7.1
   feathericon: ^1.0.2
+  form-serialize: ^0.7.2
   fs-extra: 11.1.0
   jest: ^29.3.1
   jest-environment-jsdom: ^29.3.1
@@ -66,6 +67,7 @@ devDependencies:
   eslint-plugin-solid: 0.9.1_lzzuuodtsqwxnvqeq4g4likcqa
   eslint-plugin-tailwindcss: 3.7.1_ts-node@10.9.1
   feathericon: 1.0.2
+  form-serialize: 0.7.2
   fs-extra: 11.1.0
   jest: 29.3.1_xgdmd3tdlagpkcvgycprrn3igm
   jest-environment-jsdom: 29.3.1
@@ -2896,6 +2898,10 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
+    dev: true
+
+  /form-serialize/0.7.2:
+    resolution: {integrity: sha512-ohEA4Crzd/+hSREjGf4kSsy73WhAtQ7H+blGEz2DVd+JCi0TV5nZBSn9PaPlvrl9m29fa6xclAfpRkqZ57b1bw==}
     dev: true
 
   /fraction.js/4.2.0:
