@@ -18,6 +18,7 @@ npm run dev
 ## similar projects
 
 - https://github.com/rafket/metasearch - search engine aggregator browser extension, GPL license. written in JavaScript
+- https://github.com/MichaelCurrin/search-dragon - search aggregator as a web page that will open multiple tabs with search results
 - https://github.com/duolingo/metasearch - Search aggregator for Slack, Google Docs, GitHub, and more. written in JavaScript (TypeScript)
 - boardreader.com - search many forums. closed source
 
