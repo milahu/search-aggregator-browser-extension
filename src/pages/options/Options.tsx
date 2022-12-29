@@ -4,22 +4,26 @@ import styles from "./Options.module.css";
 import {createSignal, onMount, For} from "solid-js"
 import formatErrorContext from "./format-error-context.js"
 
+import IconSearchImage from "feathericon/build/svg/search.svg"
+
+const IconSearch = () => <img class="darkmode-invert" src={IconSearchImage}/>
+
+import "bootstrap/dist/css/bootstrap.min.css"
 import {
-  HopeProvider,
   Tabs,
-  TabList,
   Tab,
-  TabPanel,
-} from "@hope-ui/solid"
+  Button,
+  InputGroup,
+  FormControl
+} from "solid-bootstrap"
 
 // javascript interpreter
 // workaround for CSP (content security policy)
-// we cannot use "eval" or "new Function" to run user code
-// TODO but maybe we can inject <script> or <iframe>
+// we cannot run user code with "eval" or "new Function" or <script> or <iframe>
 // https://github.com/milahu/awesome-javascript-interpreters
-import Sval from 'sval'
-
-
+//import Sval from 'sval'
+// fix: import esm module
+import Sval from '@src/sval/dist'
 
 import {documentOfResponse} from "./lib"
 
@@ -32,11 +36,10 @@ import {searchBackendSources} from "./search-backends/index.js"
 
 const Options = () => {
 
-  let searchInput: HTMLInputElement;
   let searchButton: HTMLButtonElement;
 
+  const [getQuery, setQuery] = createSignal("")
   const [getResults, setResults] = createSignal([])
-
   const [getSearchBackends, setSearchBackends] = createSignal([])
 
   Promise.all(Object.entries(searchBackendSources).map(async ([name, source]) => {
@@ -71,9 +74,9 @@ const Options = () => {
     return backend
   })).then(setSearchBackends)
 
-  async function startSearch(event: SubmitEvent) {
+  async function startSearch(event: SubmitEvent | MouseEvent) {
     event.preventDefault()
-    const searchQuery = searchInput.value;
+    const searchQuery = getQuery();
     searchButton.innerHTML = "Searching...";
     searchButton.disabled = true;
     setResults([])
@@ -83,48 +86,40 @@ const Options = () => {
         name: backend.name,
         results,
       }
+      console.log("resultsObject", resultsObject)
       setResults((last) => last.concat([resultsObject]))
     }))
   }
 
-  /*
-          <For each={getResults()}>
-            {(resultsObject) => (
-              <div>
-                <div>result from {resultsObject.name}</div>
-                <RawHtml html={resultsObject.results}/>
-              </div>
-            )}
-          </For>
-  */
-
   return (
-    <HopeProvider>
-      <div>
-        <div class={styles.App}>
-          <form class={styles.form} onSubmit={startSearch}>
-            <input ref={searchInput}/>
-            <button ref={searchButton}>Search</button>
-          </form>
-          <div>
-            <Tabs>
-              <TabList>
-                <For each={getResults()}>{(resultsObject) => (
-                  <Tab>{resultsObject.name}</Tab>
-                )}</For>
-                <Tab>todo1</Tab>
-                <Tab>todo2</Tab>
-              </TabList>
-              <For each={getResults()}>{(resultsObject) => (
-                <TabPanel><RawHtml html={resultsObject.results}/></TabPanel>
-              )}</For>
-              <TabPanel>todo1</TabPanel>
-              <TabPanel>todo2</TabPanel>
-            </Tabs>
-          </div>
-        </div>
-      </div>
-    </HopeProvider>
+    <div class={styles.App}>
+      <form class={styles.form} onSubmit={startSearch}>
+        <InputGroup>
+          <FormControl
+            value={getQuery()}
+            // Property 'value' does not exist on type 'EventTarget & Element'.ts(2339)
+            //onInput={({target}) => setQuery(target.value)}
+            onInput={({target}) => setQuery((target as HTMLInputElement).value)}
+            //placeholder="Here is a sample placeholder"
+            //size="sm"
+          />
+          <Button
+            ref={searchButton}
+            onClick={startSearch}
+          >Search <IconSearch/></Button>
+        </InputGroup>
+      </form>
+      <Tabs
+        //style="width:100%"
+        //alignment="center"
+      >
+        <For each={getResults()}>{(resultsObject) => (
+          <Tab title={resultsObject.name} eventKey={resultsObject.name}>
+            <RawHtml html={resultsObject.results}/>
+          </Tab>
+        )}</For>
+      </Tabs>
+    </div>
   );
 };
 
