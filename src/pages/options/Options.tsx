@@ -4,10 +4,6 @@ import styles from "./Options.module.css";
 import {createSignal, onMount, For} from "solid-js"
 import formatErrorContext from "./format-error-context.js"
 
-import IconSearchImage from "feathericon/build/svg/search.svg"
-
-const IconSearch = () => <img class="darkmode-invert" src={IconSearchImage}/>
-
 import "bootstrap/dist/css/bootstrap.min.css"
 import {
   Tabs,
@@ -106,7 +102,7 @@ const Options = () => {
           <Button
             ref={searchButton}
             onClick={startSearch}
-          >Search <IconSearch/></Button>
+          >Search 🔍</Button>
         </InputGroup>
       </form>
       <Tabs
