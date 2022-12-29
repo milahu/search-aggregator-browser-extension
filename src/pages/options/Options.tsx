@@ -38,6 +38,7 @@ const Options = () => {
   const [getQuery, setQuery] = createSignal("")
   const [getResults, setResults] = createSignal([])
   const [getSearchBackends, setSearchBackends] = createSignal([])
+  const [getTabKey, setTabKey] = createSignal("");
 
   Promise.all(Object.entries(searchBackendSources).map(async ([name, source]) => {
     function search(searchQuery) {
@@ -77,6 +78,7 @@ const Options = () => {
     searchButton.innerHTML = "Searching...";
     searchButton.disabled = true;
     setResults([])
+    let isFirstResult = true
     await Promise.all(getSearchBackends().map(async (backend) => {
       const results = await backend.search(searchQuery)
       const resultsObject = {
@@ -85,6 +87,10 @@ const Options = () => {
       }
       console.log("resultsObject", resultsObject)
       setResults((last) => last.concat([resultsObject]))
+      if (isFirstResult) {
+        setTabKey(resultsObject.name)
+        isFirstResult = false
+      }
     }))
   }
 
@@ -109,6 +115,8 @@ const Options = () => {
       <Tabs
         //style="width:100%"
         //alignment="center"
+        activeKey={getTabKey()}
+        onSelect={(key) => setTabKey(key)}
       >
         <For each={getResults()}>{(resultsObject) => (
           <Tab title={resultsObject.name} eventKey={resultsObject.name}>
