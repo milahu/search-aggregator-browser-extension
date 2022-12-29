@@ -1,0 +1,3 @@
+[submodule "src/sval"]
+	path = src/sval
+	url = https://github.com/milahu/sval
