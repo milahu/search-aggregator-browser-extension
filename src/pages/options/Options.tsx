@@ -123,6 +123,10 @@ const Options = () => {
             <div innerHTML={resultsObject.results || "(no results)"}/>
           </Tab>
         )}</For>
+        {
+          //<Tab title="todo1" eventKey="todo1">todo1</Tab>
+          //<Tab title="todo2" eventKey="todo2">todo2</Tab>
+        }
       </Tabs>
     </div>
   );
