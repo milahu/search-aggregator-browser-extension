@@ -13,6 +13,7 @@ specifiers:
   acorn: ^8.8.1
   autoprefixer: ^10.4.13
   babel-preset-solid: ^1.6.6
+  bootstrap: ^5.2.3
   eslint: 8.30.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-import: ^2.26.0
@@ -28,6 +29,7 @@ specifiers:
   prettier: 2.8.1
   rollup: 3.8.1
   sass: 1.57.1
+  solid-bootstrap: ^1.0.13
   solid-js: ^1.6.6
   solid-transition-group: ^0.0.12
   sval: ^0.4.8
@@ -55,6 +57,7 @@ devDependencies:
   acorn: 8.8.1
   autoprefixer: 10.4.13_postcss@8.4.20
   babel-preset-solid: 1.6.6
+  bootstrap: 5.2.3
   eslint: 8.30.0
   eslint-config-prettier: 8.5.0_eslint@8.30.0
   eslint-plugin-import: 2.26.0_tqyj5ytb5g6r5ett7xxedhk6eq
@@ -70,6 +73,7 @@ devDependencies:
   prettier: 2.8.1
   rollup: 3.8.1
   sass: 1.57.1
+  solid-bootstrap: 1.0.13_solid-js@1.6.6
   solid-transition-group: 0.0.12_solid-js@1.6.6
   sval: 0.4.8
   ts-jest: 29.0.3_p6ekqnroyms5nhqbfxosryz7rm
@@ -1174,6 +1178,10 @@ packages:
       fastq: 1.14.0
     dev: true
 
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: true
+
   /@rollup/pluginutils/4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
@@ -1858,6 +1866,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
+  /bootstrap/5.2.3:
+    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.6
+    dev: true
+
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
     dependencies:
@@ -2277,6 +2291,13 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       esutils: 2.0.3
+    dev: true
+
+  /dom-helpers/5.2.1:
+    resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+    dependencies:
+      '@babel/runtime': 7.20.7
+      csstype: 3.1.1
     dev: true
 
   /dom-serializer/2.0.0:
@@ -4735,10 +4756,40 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /solid-bootstrap-core/1.0.13_solid-js@1.6.6:
+    resolution: {integrity: sha512-MFCMRGYTVTa4XYmotawHVzH6HvDK0or1zWzQLfQuXWY2U4bkjvZBQmUWecvQOIStbm9wPXkqz7WbF2okaMmBEQ==}
+    peerDependencies:
+      solid-js: '>=1.6.0'
+    dependencies:
+      '@popperjs/core': 2.11.6
+      dom-helpers: 5.2.1
+      solid-js: 1.6.6
+      solid-react-transition: 1.0.11_solid-js@1.6.6
+    dev: true
+
+  /solid-bootstrap/1.0.13_solid-js@1.6.6:
+    resolution: {integrity: sha512-jtUESeVpjf0o4VQA7i3I1VeBZM1QpYfPaf0PPtLdh3WuySRa57mVV9z1wAxKSrmSdod9lMogFuAW1DS8rxI2DQ==}
+    peerDependencies:
+      solid-js: '>=1.6.0'
+    dependencies:
+      dom-helpers: 5.2.1
+      solid-bootstrap-core: 1.0.13_solid-js@1.6.6
+      solid-js: 1.6.6
+      solid-react-transition: 1.0.11_solid-js@1.6.6
+    dev: true
+
   /solid-js/1.6.6:
     resolution: {integrity: sha512-5x33mEbPI8QLuywvFjQP4krjWDr8xiYFgZx9KCBH7b0ZzypQCHaUubob7bK6i+1u6nhaAqhWtvXS587Kb8DShA==}
     dependencies:
       csstype: 3.1.1
+
+  /solid-react-transition/1.0.11_solid-js@1.6.6:
+    resolution: {integrity: sha512-YMT7z6sOupCicDtX19156vbVOm3vCIgjVhPTybR9gLKiIPrDB2NDVqnQk4kpNCDZTOwSjLTOyUQw0xJnXgDg2A==}
+    peerDependencies:
+      solid-js: '>=1.6.0'
+    dependencies:
+      solid-js: 1.6.6
+    dev: true
 
   /solid-refresh/0.4.1_solid-js@1.6.6:
     resolution: {integrity: sha512-v3tD/OXQcUyXLrWjPW1dXZyeWwP7/+GQNs8YTL09GBq+5FguA6IejJWUvJDrLIA4M0ho9/5zK2e9n+uy+4488g==}
