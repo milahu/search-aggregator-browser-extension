@@ -120,7 +120,7 @@ const Options = () => {
       >
         <For each={getResults()}>{(resultsObject) => (
           <Tab title={resultsObject.name} eventKey={resultsObject.name}>
-            <RawHtml html={resultsObject.results}/>
+            <div innerHTML={resultsObject.results || "(no results)"}/>
           </Tab>
         )}</For>
       </Tabs>
@@ -129,11 +129,7 @@ const Options = () => {
 };
 
 function RawHtml(props) {
-  let div: HTMLDivElement
-  onMount(() => {
-    div.innerHTML = props.html
-  })
-  return <div ref={div}></div>
+  return <div innerHTML={props.html}></div>
 }
 
 export default Options;
