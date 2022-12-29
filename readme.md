@@ -2,6 +2,19 @@
 
 browser extension to search with many search engines in parallel
 
+## install
+
+```sh
+cd $(mktemp -d)
+git clone --depth 1 --recurse-submodules --shallow-submodules \
+  https://github.com/milahu/search-aggregator-browser-extension
+cd search-aggregator-browser-extension
+pnpm install
+mkdir dist/
+readlink -f dist/ # load this path as "unpacked extension" in chrome
+npm run dev
+```
+
 ## similar projects
 
 - https://github.com/rafket/metasearch - search engine aggregator browser extension, GPL license. written in JavaScript
