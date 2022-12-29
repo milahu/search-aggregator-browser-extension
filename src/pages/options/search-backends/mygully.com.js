@@ -1,4 +1,4 @@
-// mygully.com is a forum, based on vBulletin
+// mygully.com is a vBulletin forum
 
 const specialCharMap = {
   "ä": "ae",
